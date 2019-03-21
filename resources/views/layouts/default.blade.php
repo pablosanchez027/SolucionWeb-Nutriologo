@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="/dist/css/skins/skin-green.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,7 +54,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -63,9 +63,9 @@ desired effect
     <!-- Logo -->
     <a href="{{route('dashboard')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Mi</b>T</span>
+      <span class="logo-mini"><b>C</b>N</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Mi</b>Tienda</span>
+      <span class="logo-lg"><b>Consultorio</b>Nutriógo</span>
     </a>
 
     <!-- Header Navbar -->
@@ -162,8 +162,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Lista</a></li>
-            <li><a href="#">Agregar</a></li>
+            <li><a href="{{ route('pacientes.index') }}">Lista</a></li>
+            <li><a href="{{ route('pacientes.create') }}">Agregar</a></li>
           </ul>
         </li>
       </ul>
@@ -203,7 +203,7 @@ desired effect
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{ now()->year }} <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
