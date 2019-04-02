@@ -10,7 +10,8 @@
                 <h3 class="box-title">Agregar Pacientes</h3>
             </div>
             <div class="box-body">
-                <form>
+                <form method="POST" action="{{ route('pacientes.store') }}">
+                    @csrf
                     <div class="form-group">
                         <label>Nombre</label>
                         <input class="form-control" type="text" name="nombre">
@@ -25,13 +26,13 @@
 
                     <div class="form-group">
                         <label>Fecha de nacimiento</label>
-                        <input class="form-control" type="date" name="nacimientos">
+                        <input class="form-control" type="date" name="nacimiento">
                     </div>
 
 
                     <div class="form-group">
                         <label>Correo electrónico</label>
-                        <input class="form-control" type="email" name="correo">
+                        <input class="form-control" type="email" name="email">
                     </div>
 
 

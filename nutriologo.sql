@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 21, 2019 at 12:53 AM
+-- Generation Time: Apr 02, 2019 at 01:48 AM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -13,6 +13,57 @@ SET time_zone = "+00:00";
 --
 -- Database: `nutriologo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comidas_dieta`
+--
+
+CREATE TABLE `comidas_dieta` (
+  `id` int(11) NOT NULL,
+  `id_dieta` int(11) NOT NULL,
+  `id_dia_semana` int(11) NOT NULL,
+  `id_tiempo_alimentacion` int(11) NOT NULL,
+  `titulo` varchar(30) NOT NULL,
+  `descripcion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dias_semana`
+--
+
+CREATE TABLE `dias_semana` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `dias_semana`
+--
+
+INSERT INTO `dias_semana` (`id`, `nombre`) VALUES
+(1, 'Domingo'),
+(2, 'Lunes'),
+(3, 'Martes'),
+(4, 'Miércoles'),
+(5, 'Jueves'),
+(6, 'Viernes'),
+(7, 'Sábado');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dietas`
+--
+
+CREATE TABLE `dietas` (
+  `id` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
+  `inicio_semana` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -54,8 +105,7 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`id`, `nombre`, `apellidos`, `nacimiento`, `created_at`, `updated_at`) VALUES
-(1, 'Sofia', 'Beltrán', '1999-05-25', '2019-03-21 00:52:32', '2019-03-21 00:52:32'),
-(2, 'Andrea', 'Villa', '1996-08-14', '2019-03-21 00:53:15', '2019-03-21 00:53:15');
+(6, 'Iram', 'Garcia', '1996-05-27', '2019-04-02 08:11:11', '2019-04-02 08:11:11');
 
 -- --------------------------------------------------------
 
@@ -68,6 +118,26 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tiempos_alimentacion`
+--
+
+CREATE TABLE `tiempos_alimentacion` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tiempos_alimentacion`
+--
+
+INSERT INTO `tiempos_alimentacion` (`id`, `descripcion`) VALUES
+(1, 'Desayuno'),
+(2, 'Comida'),
+(3, 'Cena');
 
 -- --------------------------------------------------------
 
@@ -114,12 +184,33 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `foto`, `id_tipo_usuario`, `id_paciente`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Pablo Sánchez', 'pablo@pablo.pablo', NULL, '$2y$10$Y/Zplv61PIVOUu.HNkm5..3pzCKPq7tFDXNIfoEAHcxf7iCTjwJPW', 'user1_2019-02-28_rootfox.jpg', 1, NULL, 'GM4gUc3sqyD8HFVwPoPcibiKEQS6JBG10txNGTsKzdDpIm5sjhx06O33PeuJ', '2019-02-21 07:38:55', '2019-03-21 07:34:47'),
-(2, 'Sofía Beltrán Martiín', 'sofia@sofia.sofia', NULL, 'sofiasofia', NULL, 2, 1, NULL, NULL, NULL),
-(3, 'Jamey Stegmaier', 'st@st.st', NULL, 'smgamessmgames', NULL, 2, NULL, NULL, NULL, NULL);
+(4, 'Iram', 'iram@iram.g', NULL, '$2y$10$P6tdSjyv.gdincxgp7GjO.Q6YqVu8DUsF7EtCTcNlE5FC.N/qaNnu', NULL, 2, 6, NULL, '2019-04-02 08:11:11', '2019-04-02 08:11:11');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comidas_dieta`
+--
+ALTER TABLE `comidas_dieta`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_dieta` (`id_dieta`,`id_dia_semana`,`id_tiempo_alimentacion`),
+  ADD KEY `id_dia_semana` (`id_dia_semana`),
+  ADD KEY `id_tiempo_alimentacion` (`id_tiempo_alimentacion`);
+
+--
+-- Indexes for table `dias_semana`
+--
+ALTER TABLE `dias_semana`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dietas`
+--
+ALTER TABLE `dietas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_paciente` (`id_paciente`,`inicio_semana`);
 
 --
 -- Indexes for table `migrations`
@@ -138,6 +229,12 @@ ALTER TABLE `pacientes`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `tiempos_alimentacion`
+--
+ALTER TABLE `tiempos_alimentacion`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tipos_usuarios`
@@ -159,6 +256,24 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `comidas_dieta`
+--
+ALTER TABLE `comidas_dieta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `dias_semana`
+--
+ALTER TABLE `dias_semana`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `dietas`
+--
+ALTER TABLE `dietas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -168,7 +283,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tiempos_alimentacion`
+--
+ALTER TABLE `tiempos_alimentacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tipos_usuarios`
@@ -180,11 +301,25 @@ ALTER TABLE `tipos_usuarios`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comidas_dieta`
+--
+ALTER TABLE `comidas_dieta`
+  ADD CONSTRAINT `comidas_dieta_ibfk_1` FOREIGN KEY (`id_dia_semana`) REFERENCES `dias_semana` (`id`),
+  ADD CONSTRAINT `comidas_dieta_ibfk_2` FOREIGN KEY (`id_dieta`) REFERENCES `dietas` (`id`),
+  ADD CONSTRAINT `comidas_dieta_ibfk_3` FOREIGN KEY (`id_tiempo_alimentacion`) REFERENCES `tiempos_alimentacion` (`id`);
+
+--
+-- Constraints for table `dietas`
+--
+ALTER TABLE `dietas`
+  ADD CONSTRAINT `dietas_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id`);
 
 --
 -- Constraints for table `users`
