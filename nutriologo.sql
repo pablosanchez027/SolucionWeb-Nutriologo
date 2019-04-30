@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 02, 2019 at 01:48 AM
+-- Generation Time: Apr 30, 2019 at 01:41 AM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -26,7 +26,9 @@ CREATE TABLE `comidas_dieta` (
   `id_dia_semana` int(11) NOT NULL,
   `id_tiempo_alimentacion` int(11) NOT NULL,
   `titulo` varchar(30) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
+  `descripcion` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -37,7 +39,9 @@ CREATE TABLE `comidas_dieta` (
 
 CREATE TABLE `dias_semana` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(12) NOT NULL
+  `nombre` varchar(12) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -62,8 +66,17 @@ INSERT INTO `dias_semana` (`id`, `nombre`) VALUES
 CREATE TABLE `dietas` (
   `id` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `inicio_semana` date NOT NULL
+  `inicio_semana` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `dietas`
+--
+
+INSERT INTO `dietas` (`id`, `id_paciente`, `inicio_semana`, `created_at`, `updated_at`) VALUES
+(1, 6, '2019-04-15', '2019-04-30 08:40:58', '2019-04-30 08:40:58');
 
 -- --------------------------------------------------------
 
@@ -74,7 +87,9 @@ CREATE TABLE `dietas` (
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `batch` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -116,7 +131,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apellidos`, `nacimiento`, `created_at`
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -127,7 +143,9 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `tiempos_alimentacion` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(12) NOT NULL
+  `descripcion` varchar(12) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -147,7 +165,9 @@ INSERT INTO `tiempos_alimentacion` (`id`, `descripcion`) VALUES
 
 CREATE TABLE `tipos_usuarios` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
+  `descripcion` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -271,7 +291,7 @@ ALTER TABLE `dias_semana`
 -- AUTO_INCREMENT for table `dietas`
 --
 ALTER TABLE `dietas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`

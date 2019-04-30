@@ -3,36 +3,43 @@
 @section('titulo','Nutriólogo')
 @section('subtitulo','Asignar Dieta')
 @section('contenido')
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Información de la dieta</h3>
+
+<form method="POST" action="{{route('dietas.store')}}">
+    @csrf
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Información de la dieta</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Paciente</label>
+                        <select class="form-control" name="paciente" required>
+                            <option selected disabled value="">
+                                Elige un paciente
+                            </option>
+                            @foreach($pacientes as $paciente)
+                            <option value="{{$paciente->id}}">
+                                {{ $paciente->nombre . " " . $paciente->apellidos }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Semana</label>
+                        <input type="date" name="semana" class="form-control">
+                        <small class="form-text text-muted">Elige solo días lunes</small>
+                    </div>
+                </div>
             </div>
-            <div class="box-body">
-                <div class="form-group">
-                    <label>Paciente</label>
-                    <select class="form-control" name="paciente" required>
-                        <option selected disabled value="">
-                            Eige un paciente
-                        </option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Semana</label>
-                    <input type="date" name="semana" class="form-control">
-                    <small class="form-text text-muted">Elige solo días lunes</small>
-                </div>
+            <div class="form-group text-right">
+                <button class="btn btn-primary" type="submit">Asignar Dieta</button>
             </div>
         </div>
-        <div class="form-group text-right">
-            <button class="btn btn-primary" type="submit">Asignar Dieta</button>
-        </div>
+
     </div>
 
-</div>
-
-<form method="POST" action="{{ route('dietas.store') }}">
     <div class="row">
 
         <div class="col-md-4">

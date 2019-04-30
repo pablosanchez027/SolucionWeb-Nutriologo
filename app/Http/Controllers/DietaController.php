@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dieta;
+use App\Paciente;
+use App\ComidaDieta;
 
 class DietaController extends Controller
 {
@@ -13,7 +16,11 @@ class DietaController extends Controller
      */
     public function index()
     {
-        //
+        $dietas = Dieta::leftJoin('pacientes','dietas.id_paciente','=','pacientes.id_paciente')->select('dietas.id','dietas.inicio_semana','pacientes.nombre','pacientes.apellido','pacientes.id')->get();
+        $argumentos = array();
+        $argumentos['dietas'] = $dietas;
+
+        return view ('dietas.index',$argumentos);
     }
 
     /**
@@ -23,7 +30,10 @@ class DietaController extends Controller
      */
     public function create()
     {
-        return view('dietas.create');
+        $pacientes = Paciente::all();
+        $argumentos = array();
+        $argumentos['pacientes'] = $pacientes;
+        return view('dietas.create', $argumentos);
     }
 
     /**
@@ -51,7 +61,7 @@ class DietaController extends Controller
             $comidaDomingo = new ComidaDieta();
             $comidaDomingo->id_dieta = $nuevaDieta->id;
             $comidaDomingo->id_dia_semana = 1;
-            $comidaDomingo->id_tiempo_alimentacion = 1;
+            $comidaDomingo->id_tiempo_alimentacion = 2;
             $comidaDomingo->titulo = $request->input('comida_domingo');
             $comidaDomingo->descripcion = $request->input('descripcion_comida_domingo');
             $comidaDomingo->save();
@@ -59,7 +69,7 @@ class DietaController extends Controller
             $cenaDomingo = new ComidaDieta();
             $cenaDomingo->id_dieta = $nuevaDieta->id;
             $cenaDomingo->id_dia_semana = 1;
-            $cenaDomingo->id_tiempo_alimentacion = 1;
+            $cenaDomingo->id_tiempo_alimentacion = 3;
             $cenaDomingo->titulo = $request->input('cena_domingo');
             $cenaDomingo->descripcion = $request->input('descripcion_cena_domingo');
             $cenaDomingo->save();
@@ -77,7 +87,7 @@ class DietaController extends Controller
             $comidaLunes = new ComidaDieta();
             $comidaLunes->id_dieta = $nuevaDieta->id;
             $comidaLunes->id_dia_semana = 2;
-            $comidaLunes->id_tiempo_alimentacion = 1;
+            $comidaLunes->id_tiempo_alimentacion = 2;
             $comidaLunes->titulo = $request->input('comida_lunes');
             $comidaLunes->descripcion = $request->input('descripcion_comida_lunes');
             $comidaLunes->save();
@@ -85,7 +95,7 @@ class DietaController extends Controller
             $cenaLunes = new ComidaDieta();
             $cenaLunes->id_dieta = $nuevaDieta->id;
             $cenaLunes->id_dia_semana = 2;
-            $cenaLunes->id_tiempo_alimentacion = 1;
+            $cenaLunes->id_tiempo_alimentacion = 3;
             $cenaLunes->titulo = $request->input('cena_lunes');
             $cenaLunes->descripcion = $request->input('descripcion_cena_lunes');
             $cenaLunes->save();
@@ -103,7 +113,7 @@ class DietaController extends Controller
             $comidaMartes = new ComidaDieta();
             $comidaMartes->id_dieta = $nuevaDieta->id;
             $comidaMartes->id_dia_semana = 3;
-            $comidaMartes->id_tiempo_alimentacion = 1;
+            $comidaMartes->id_tiempo_alimentacion = 2;
             $comidaMartes->titulo = $request->input('comida_martes');
             $comidaMartes->descripcion = $request->input('descripcion_comida_martes');
             $comidaMartes->save();
@@ -111,7 +121,7 @@ class DietaController extends Controller
             $cenaMartes = new ComidaDieta();
             $cenaMartes->id_dieta = $nuevaDieta->id;
             $cenaMartes->id_dia_semana = 3;
-            $cenaMartes->id_tiempo_alimentacion = 1;
+            $cenaMartes->id_tiempo_alimentacion = 3;
             $cenaMartes->titulo = $request->input('cena_martes');
             $cenaMartes->descripcion = $request->input('descripcion_cena_martes');
             $cenaMartes->save();
@@ -129,7 +139,7 @@ class DietaController extends Controller
             $comidaMiercoles = new ComidaDieta();
             $comidaMiercoles->id_dieta = $nuevaDieta->id;
             $comidaMiercoles->id_dia_semana = 4;
-            $comidaMiercoles->id_tiempo_alimentacion = 1;
+            $comidaMiercoles->id_tiempo_alimentacion = 2;
             $comidaMiercoles->titulo = $request->input('comida_miercoles');
             $comidaMiercoles->descripcion = $request->input('descripcion_comida_miercoles');
             $comidaMiercoles->save();
@@ -137,7 +147,7 @@ class DietaController extends Controller
             $cenaMiercoles = new ComidaDieta();
             $cenaMiercoles->id_dieta = $nuevaDieta->id;
             $cenaMiercoles->id_dia_semana = 4;
-            $cenaMiercoles->id_tiempo_alimentacion = 1;
+            $cenaMiercoles->id_tiempo_alimentacion = 3;
             $cenaMiercoles->titulo = $request->input('cena_miercoles');
             $cenaMiercoles->descripcion = $request->input('descripcion_cena_miercoles');
             $cenaMiercoles->save();
@@ -155,7 +165,7 @@ class DietaController extends Controller
             $comidaJueves = new ComidaDieta();
             $comidaJueves->id_dieta = $nuevaDieta->id;
             $comidaJueves->id_dia_semana = 5;
-            $comidaJueves->id_tiempo_alimentacion = 1;
+            $comidaJueves->id_tiempo_alimentacion = 2;
             $comidaJueves->titulo = $request->input('comida_jueves');
             $comidaJueves->descripcion = $request->input('descripcion_comida_jueves');
             $comidaJueves->save();
@@ -163,7 +173,7 @@ class DietaController extends Controller
             $cenaJueves = new ComidaDieta();
             $cenaJueves->id_dieta = $nuevaDieta->id;
             $cenaJueves->id_dia_semana = 5;
-            $cenaJueves->id_tiempo_alimentacion = 1;
+            $cenaJueves->id_tiempo_alimentacion = 3;
             $cenaJueves->titulo = $request->input('cena_jueves');
             $cenaJueves->descripcion = $request->input('descripcion_cena_jueves');
             $cenaJueves->save();
@@ -181,7 +191,7 @@ class DietaController extends Controller
             $comidaViernes = new ComidaDieta();
             $comidaViernes->id_dieta = $nuevaDieta->id;
             $comidaViernes->id_dia_semana = 6;
-            $comidaViernes->id_tiempo_alimentacion = 1;
+            $comidaViernes->id_tiempo_alimentacion = 2;
             $comidaViernes->titulo = $request->input('comida_viernes');
             $comidaViernes->descripcion = $request->input('descripcion_comida_viernes');
             $comidaViernes->save();
@@ -189,7 +199,7 @@ class DietaController extends Controller
             $cenaViernes = new ComidaDieta();
             $cenaViernes->id_dieta = $nuevaDieta->id;
             $cenaViernes->id_dia_semana = 6;
-            $cenaViernes->id_tiempo_alimentacion = 1;
+            $cenaViernes->id_tiempo_alimentacion = 3;
             $cenaViernes->titulo = $request->input('cena_viernes');
             $cenaViernes->descripcion = $request->input('descripcion_cena_viernes');
             $cenaViernes->save();
@@ -207,7 +217,7 @@ class DietaController extends Controller
             $comidaSabado = new ComidaDieta();
             $comidaSabado->id_dieta = $nuevaDieta->id;
             $comidaSabado->id_dia_semana = 7;
-            $comidaSabado->id_tiempo_alimentacion = 1;
+            $comidaSabado->id_tiempo_alimentacion = 2;
             $comidaSabado->titulo = $request->input('comida_sabado');
             $comidaSabado->descripcion = $request->input('descripcion_comida_sabado');
             $comidaSabado->save();
@@ -215,11 +225,14 @@ class DietaController extends Controller
             $cenaSabado = new ComidaDieta();
             $cenaSabado->id_dieta = $nuevaDieta->id;
             $cenaSabado->id_dia_semana = 7;
-            $cenaSabado->id_tiempo_alimentacion = 1;
+            $cenaSabado->id_tiempo_alimentacion = 3;
             $cenaSabado->titulo = $request->input('cena_sabado');
             $cenaSabado->descripcion = $request->input('descripcion_cena_sabado');
             $cenaSabado->save();
+
+            return redirect()->route('dietas.index')->with('exito','Dieta guardada');
         }
+        return redirect()->route('dietas.index')->with('error','No se pudo guardar dieta');
     }
 
     /**
