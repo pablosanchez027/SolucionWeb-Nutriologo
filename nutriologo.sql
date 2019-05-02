@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 30, 2019 at 01:41 AM
+-- Generation Time: May 02, 2019 at 07:43 PM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -31,6 +31,33 @@ CREATE TABLE `comidas_dieta` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `comidas_dieta`
+--
+
+INSERT INTO `comidas_dieta` (`id`, `id_dieta`, `id_dia_semana`, `id_tiempo_alimentacion`, `titulo`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, 'iuytiuyt', 'iuyhtity', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(2, 2, 1, 2, 'iuhytiuyt', 'iuhtiuyht', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(3, 2, 1, 3, 'iuhtiuyt', 'iuythiuty', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(4, 2, 2, 1, 'asdf', 'adf', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(5, 2, 2, 2, 'kjhg', 'kjhg', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(6, 2, 2, 3, 'kjhg', 'kjhg', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(7, 2, 3, 1, 'kjhg', 'lkjh', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(8, 2, 3, 2, 'lkjh', 'ghjk', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(9, 2, 3, 3, 'khjg', 'kjhg', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(10, 2, 4, 1, 'ghjk', 'kjhggjkh', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(11, 2, 4, 2, 'gjkh', 'kjhg', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(12, 2, 4, 3, 'kjhglg', 'oiuytgiuyt8', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(13, 2, 5, 1, 'iuytiuy', 'iuyhtiuty', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(14, 2, 5, 2, 'iuhtiuyhti6tb', 'iuytiuytbi', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(15, 2, 5, 3, 'iuygtiuyth', 'iuyti', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(16, 2, 6, 1, 'ibuyg', 'khjbg', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(17, 2, 6, 2, 'kjhg', 'iyutbiu', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(18, 2, 6, 3, 'iubytiytu', 'ihyi', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(19, 2, 7, 1, 'Ihyti', 'ihyiuty', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(20, 2, 7, 2, 'ihyti', 'jityiyt', '2019-05-03 02:38:18', '2019-05-03 02:38:18'),
+(21, 2, 7, 3, 'iuytiuyt', 'iuytiuytbi', '2019-05-03 02:38:18', '2019-05-03 02:38:18');
+
 -- --------------------------------------------------------
 
 --
@@ -48,14 +75,14 @@ CREATE TABLE `dias_semana` (
 -- Dumping data for table `dias_semana`
 --
 
-INSERT INTO `dias_semana` (`id`, `nombre`) VALUES
-(1, 'Domingo'),
-(2, 'Lunes'),
-(3, 'Martes'),
-(4, 'Miércoles'),
-(5, 'Jueves'),
-(6, 'Viernes'),
-(7, 'Sábado');
+INSERT INTO `dias_semana` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'Domingo', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(2, 'Lunes', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(3, 'Martes', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(4, 'Miércoles', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(5, 'Jueves', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(6, 'Viernes', '2019-05-02 19:13:09', '2019-05-02 19:13:09'),
+(7, 'Sábado', '2019-05-02 19:13:09', '2019-05-02 19:13:09');
 
 -- --------------------------------------------------------
 
@@ -76,7 +103,7 @@ CREATE TABLE `dietas` (
 --
 
 INSERT INTO `dietas` (`id`, `id_paciente`, `inicio_semana`, `created_at`, `updated_at`) VALUES
-(1, 6, '2019-04-15', '2019-04-30 08:40:58', '2019-04-30 08:40:58');
+(2, 6, '2019-05-06', '2019-05-03 02:38:18', '2019-05-03 02:38:18');
 
 -- --------------------------------------------------------
 
@@ -96,9 +123,9 @@ CREATE TABLE `migrations` (
 -- Dumping data for table `migrations`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`, `created_at`, `updated_at`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1, '2019-05-02 19:13:10', '2019-05-02 19:13:10'),
+(2, '2014_10_12_100000_create_password_resets_table', 1, '2019-05-02 19:13:10', '2019-05-02 19:13:10');
 
 -- --------------------------------------------------------
 
@@ -152,10 +179,10 @@ CREATE TABLE `tiempos_alimentacion` (
 -- Dumping data for table `tiempos_alimentacion`
 --
 
-INSERT INTO `tiempos_alimentacion` (`id`, `descripcion`) VALUES
-(1, 'Desayuno'),
-(2, 'Comida'),
-(3, 'Cena');
+INSERT INTO `tiempos_alimentacion` (`id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Desayuno', '2019-05-02 19:13:10', '2019-05-02 19:13:10'),
+(2, 'Comida', '2019-05-02 19:13:10', '2019-05-02 19:13:10'),
+(3, 'Cena', '2019-05-02 19:13:10', '2019-05-02 19:13:10');
 
 -- --------------------------------------------------------
 
@@ -174,9 +201,9 @@ CREATE TABLE `tipos_usuarios` (
 -- Dumping data for table `tipos_usuarios`
 --
 
-INSERT INTO `tipos_usuarios` (`id`, `descripcion`) VALUES
-(1, 'Nutriólogo'),
-(2, 'Paciente');
+INSERT INTO `tipos_usuarios` (`id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Nutriólogo', '2019-05-02 19:13:10', '2019-05-02 19:13:10'),
+(2, 'Paciente', '2019-05-02 19:13:10', '2019-05-02 19:13:10');
 
 -- --------------------------------------------------------
 
@@ -279,7 +306,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comidas_dieta`
 --
 ALTER TABLE `comidas_dieta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `dias_semana`
@@ -291,7 +318,7 @@ ALTER TABLE `dias_semana`
 -- AUTO_INCREMENT for table `dietas`
 --
 ALTER TABLE `dietas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`

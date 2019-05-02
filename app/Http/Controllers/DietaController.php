@@ -16,7 +16,12 @@ class DietaController extends Controller
      */
     public function index()
     {
-        $dietas = Dieta::leftJoin('pacientes','dietas.id_paciente','=','pacientes.id_paciente')->select('dietas.id','dietas.inicio_semana','pacientes.nombre','pacientes.apellido','pacientes.id')->get();
+        $dietas = Dieta::leftJoin('pacientes',
+            'dietas.id_paciente','=','pacientes.id')
+            ->select('dietas.id','dietas.inicio_semana',
+            'pacientes.nombre','pacientes.apellidos',
+            'pacientes.id as id_paciente')
+            ->get();
         $argumentos = array();
         $argumentos['dietas'] = $dietas;
 

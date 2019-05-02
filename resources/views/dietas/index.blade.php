@@ -28,7 +28,7 @@
                         @foreach($dietas as $dieta)
                             <tr>
                                 <td>
-                                    {{ $dieta->nombre . " " . $paciente->apellidos }}
+                                    {{ $dieta->nombre . " " . $dieta->apellidos }}
                                 </td>
                                 <td>
                                     {{ $dieta->inicio_semana }}
